@@ -1,0 +1,73 @@
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+              <h2 *ngIf="!uiRegister" class="fw-bold mb-2 text-uppercase">Inicia sesión</h2>
+              <h2 *ngIf="uiRegister" class="fw-bold mb-2 text-uppercase">Registrate</h2>
+              <p>Project BETA .NET</p>
+              <p *ngIf="!uiRegister" class="text-white-50 mb-5">¡Por favor, introduce tu email y contraseña!</p>
+              <p *ngIf="uiRegister" class="text-white-50 mb-5">¡Por favor, rellene todos los campos!</p>
+              <!-- Form Login --->
+              <form *ngIf="!uiRegister" [formGroup]="formLogin" (ngSubmit)="Login()">
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typeEmailX" style="display: flex;">Email</label>
+                  <input placeholder="Ingrese su email" type="email" id="typeEmailX" class="form-control form-control-lg" formControlName="email" />
+                </div>
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typePasswordX" style="display: flex;">Contraseña</label>
+                  <input placeholder="Ingrese su contraseña" type="password" id="typePasswordX" class="form-control form-control-lg"
+                    formControlName="password" />
+                </div>
+                <button class="btn btn-outline-light btn-lg px-5" [disabled]="!formLogin.valid"
+                  type="submit">Login</button>
+              </form>
+              <!-- Form Register --->
+              <form *ngIf="uiRegister" [formGroup]="formRegister" (ngSubmit)="Register()">
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typeName" style="display: flex;">Nombre Completo</label>
+                  <input placeholder="Ingrese su nombre" type="text" id="typeName" class="form-control form-control-lg" formControlName="name" required />
+                 <div style="margin-top: 10px">
+                  <span class="text-danger">{{ utils.getErrorMessage(formRegister.get('name')) }}</span>
+                 </div>
+                </div>
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typeEmailX" style="display: flex;">Email</label>
+                  <input placeholder="Ingrese su email" type="email" id="typeEmailX" class="form-control form-control-lg" formControlName="email" required />
+                  <div style="margin-top: 10px">
+                    <span class="text-danger">{{ utils.getErrorMessage(formRegister.get('email')) }}</span>
+                   </div>
+                </div>
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typePasswordX" style="display: flex;">Contraseña</label>
+                  <input placeholder="Ingrese su contraseña" type="password" id="typePasswordX" class="form-control form-control-lg"
+                    formControlName="password" required/>
+                    <div style="margin-top: 10px">
+                      <span class="text-danger">{{ utils.getErrorMessage(formRegister.get('password')) }}</span>
+                     </div>
+                </div>
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typeRe-PasswordX" style="display: flex;">Repetir contraseña</label>
+                  <input placeholder="Repetir contraseña" type="password" id="typeRe-PasswordX" class="form-control form-control-lg"
+                    formControlName="re-password" required/>
+                    <div style="margin-top: 10px">
+                      <span class="text-danger">{{ utils.getErrorMessage(formRegister.get('re-password')) }}</span>
+                     </div>
+                </div>
+                <button class="btn btn-outline-light btn-lg px-5"
+                  type="submit">Registrate</button>
+              </form>
+              <div *ngIf="!uiRegister" style="margin-top:20px;">
+                <p class="text-white-50 mb-5">¿No tienes una cuenta? <a style="color: var(--bs-link-color);text-decoration: underline;cursor: pointer;" (click)="uiRegister = true" >Registrate</a></p>
+              </div>
+              <div *ngIf="uiRegister" style="margin-top:20px;">
+                <p class="text-white-50 mb-5">Regresar al login <a style="color: var(--bs-link-color);text-decoration: underline;cursor: pointer;" (click)="uiRegister = false" >Regresar</a></p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Path: FrontEnd\Angular-CRUD-FRONTEND\src\app\components\login\login.component.ts -->

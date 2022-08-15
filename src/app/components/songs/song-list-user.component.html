@@ -1,0 +1,42 @@
+<section>
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <h4 class="fw-bold mb-2 text-uppercase">Lista de canciones favoritas</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Titulo</th>
+                  <th scope="col">Grupo</th>
+                  <th scope="col">Año</th>
+                  <th scope="col">Genero</th>
+                  <th style="width: 76px !important" data-priority="2">
+                    Acciones
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let song of songs">
+                  <td scope="row">{{song.id}}</td>
+                  <td>{{song.title}}</td>
+                  <td>{{song.group}}</td>
+                  <td>{{song.year}}</td>
+                  <td>{{song.gender}}</td>
+                  <td>
+                    <button class="btn btn-danger" (click)="deleteSong(song.id_favorite)">
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Path: FrontEnd\Angular-CRUD-FRONTEND\src\app\components\songs\song-lista-user.component.html -->
